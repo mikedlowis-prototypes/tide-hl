@@ -1,3 +1,4 @@
 *.cm*
 *.o
 lex_*.ml
+tide-hl
