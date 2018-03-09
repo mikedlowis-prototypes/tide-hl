@@ -44,4 +44,5 @@ let range_start ctx =
 
 let range_stop ctx clr =
   Printf.printf "%d,%d,%d\n"
-    ctx.pos (lexeme_end ctx.lbuf) (get_color clr)
+    ctx.pos (lexeme_end ctx.lbuf) (get_color clr);
+  ctx.pos <- (-1)

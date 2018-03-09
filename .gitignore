@@ -2,3 +2,4 @@
 *.o
 lex_*.ml
 tide-hl
+tide-hl.rb

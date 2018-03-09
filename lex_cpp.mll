@@ -57,6 +57,6 @@ and comment ctx = parse
   | eof  { raise Eof }
 
 and preproc ctx = parse
-  | sys_incl { set_color ctx Constant }
+  | sys_incl { set_color ctx String }
   | _        { (* skip *) }
   | eof      { raise Eof }

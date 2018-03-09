@@ -36,6 +36,7 @@ let rec scan_string lexfn string =
   let ctx = Colormap.({ lbuf = lbuf; pos = 0; }) in
   try while true do lexfn ctx lbuf done
   with Colormap.Eof ->
+    if ctx.pos >= 0 then Colormap.range_stop ctx Comment;
     Printf.printf "0,0,0\n";
     flush stdout;
     scan_input lexfn
