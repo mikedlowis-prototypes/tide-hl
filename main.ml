@@ -1,4 +1,3 @@
-
 type filetype = {
   syntax : Colormap.ctx -> Lexing.lexbuf -> unit;
   names : string list;
@@ -32,16 +31,19 @@ let pick_syntax path =
   in
   (List.find_opt match_ftype filetypes)
 
-let scan_string lexfn string =
+let rec scan_string lexfn string =
   let lbuf = Lexing.from_string string in
   let ctx = Colormap.({ lbuf = lbuf; pos = 0; }) in
   try while true do lexfn ctx lbuf done
   with Colormap.Eof ->
     Printf.printf "0,0,0\n";
-    flush stdout
+    flush stdout;
+    scan_input lexfn
 
-let rec scan_input lexfn =
-  try scan_string lexfn (really_input_string stdin (read_int ())) with
+and scan_input lexfn =
+  try
+    scan_string lexfn (really_input_string stdin (read_int ()));
+  with
   | Failure _ -> scan_input lexfn
   | End_of_file -> ()
 

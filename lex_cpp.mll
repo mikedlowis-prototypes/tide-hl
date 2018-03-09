@@ -40,9 +40,9 @@ let typedef = "bool" | "short" | "int" | "long" | "unsigned" | "signed" | "char"
 rule scan ctx = parse
   | "/*"       { range_start ctx; comment ctx lexbuf }
   | ln_cmt     { set_color ctx Comment }
-  | number     { set_color ctx Constant }
-  | character  { set_color ctx Constant }
-  | string     { set_color ctx Constant }
+  | number     { set_color ctx Number }
+  | character  { set_color ctx Char }
+  | string     { set_color ctx String }
   | const      { set_color ctx Constant }
   | keyword    { set_color ctx Keyword }
   | typedef    { set_color ctx Type }

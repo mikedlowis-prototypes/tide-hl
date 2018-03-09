@@ -24,9 +24,9 @@ let keyword = "and" | "as" | "assert" | "begin" | "class" | "constraint" | "do"
 
 rule scan ctx = parse
   | "(*"       { range_start ctx; comment ctx lexbuf }
-  | number     { set_color ctx Constant }
-  | character  { set_color ctx Constant }
-  | string     { set_color ctx Constant }
+  | number     { set_color ctx Number }
+  | character  { set_color ctx Char }
+  | string     { set_color ctx String }
   | const      { set_color ctx Constant }
   | keyword    { set_color ctx Keyword }
   | typedef    { set_color ctx Type }

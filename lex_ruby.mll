@@ -31,8 +31,8 @@ let string = (
 
 rule scan ctx = parse
   | ln_cmt     { set_color ctx Comment }
-  | number     { set_color ctx Constant }
-  | string     { set_color ctx Constant }
+  | number     { set_color ctx Number }
+  | string     { set_color ctx String }
   | keyword    { set_color ctx Keyword }
   | typedef    { set_color ctx Type }
   | identifier { (* skip *) }
