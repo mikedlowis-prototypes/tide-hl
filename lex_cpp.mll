@@ -13,7 +13,7 @@ let istyle = ['u' 'U' 'l' 'L']
 
 let ln_cmt = "//" [^ '\n']*
 let character = "'" ([^'\\' '\''] | '\\' _) "'"
-let string = '"' ([^'\\' '"'] | '\\' _)* ['"' '\n']
+let string = '"' ([^'\\' '"' '\n'] | '\\' _)* '"'
 let identifier = alpha_ alnum_*
 let preprocess = "#" [' ' '\t']* alpha_+
 let sys_incl = (' '|'\t')* '<' [^ '\n' '>']* '>'
