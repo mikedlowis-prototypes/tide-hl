@@ -38,7 +38,7 @@ let typedef = "bool" | "short" | "int" | "long" | "unsigned" | "signed" | "char"
     | "float" | "double"
 
 rule scan ctx = parse
-  | "/*"       { range_start ctx; comment ctx lexbuf }
+  | "/*"       { range_start ctx Comment; comment ctx lexbuf }
   | ln_cmt     { set_color ctx Comment }
   | number     { set_color ctx Number }
   | character  { set_color ctx Char }
@@ -52,7 +52,7 @@ rule scan ctx = parse
   | eof        { raise Eof }
 
 and comment ctx = parse
-  | "*/" { range_stop ctx Comment }
+  | "*/" { range_stop ctx }
   | _    { comment ctx lexbuf }
   | eof  { raise Eof }
 

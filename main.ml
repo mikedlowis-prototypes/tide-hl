@@ -33,10 +33,10 @@ let pick_syntax path =
 
 let rec scan_string lexfn string =
   let lbuf = Lexing.from_string string in
-  let ctx = Colormap.({ lbuf = lbuf; pos = 0; }) in
+  let ctx = Colormap.({ lbuf = lbuf; clr = Normal; pos = 0; }) in
   try while true do lexfn ctx lbuf done
   with Colormap.Eof ->
-    if ctx.pos >= 0 then Colormap.range_stop ctx Comment;
+    if ctx.pos >= 0 then Colormap.range_stop ctx;
     Printf.printf "0,0,0\n";
     flush stdout;
     scan_input lexfn

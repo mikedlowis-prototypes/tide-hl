@@ -9,6 +9,7 @@ type style =
 
 type ctx = {
   lbuf : lexbuf;
+  mutable clr : style;
   mutable pos : int;
 }
 
@@ -39,10 +40,12 @@ let set_color ctx clr =
   Printf.printf "%d,%d,%d\n"
     (lexeme_start ctx.lbuf) (lexeme_end ctx.lbuf) (get_color clr)
 
-let range_start ctx =
+let range_start ctx clr =
+  ctx.clr <- clr;
   ctx.pos <- (lexeme_start ctx.lbuf)
 
-let range_stop ctx clr =
+let range_stop ctx =
   Printf.printf "%d,%d,%d\n"
-    ctx.pos (lexeme_end ctx.lbuf) (get_color clr);
+    ctx.pos (lexeme_end ctx.lbuf) (get_color ctx.clr);
   ctx.pos <- (-1)
+
